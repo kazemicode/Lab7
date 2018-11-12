@@ -47,6 +47,8 @@ def drawCard(canvas):
   drawFace(canvas, pic2, 371, 611, 352, 521)
   # Draws face on pumpkin 3
   drawFace(canvas, pic3, 627, 800, 267, 440)
+  addMessage(canvas, "HAPPY THANKSGIVING", 25, 100, red)
+  addMessage(canvas, "HAPPY THANKSGIVING", 25, 110, yellow)
   show(canvas)
   return canvas
 
@@ -129,5 +131,8 @@ def shrink(pic, widthRatio, heightRatio):
    
         
   
-  
+def addMessage(canvas, text, x, y, c):
+  s = makeStyle(sansSerif, bold, 75)
+  addTextWithStyle(canvas, x, y, text, s, c) 
+  return canvas  
   
