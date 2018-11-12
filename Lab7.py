@@ -101,6 +101,15 @@ def stretch(pic, widthRatio, heightRatio):
         setColor(getPixel(canvas,x,y), getColor(getPixel(pic,x/widthRatio,y/heightRatio))) 
   #show(canvas)
   return canvas
+  
+def shrink(pic, widthRatio, heightRatio):
+  w, h = getWidth(pic), getHeight(pic)
+  canvas = makeEmptyPicture(w/widthRatio, h/heightRatio)  
+  for x in range(0, getWidth(canvas)):
+    for y in range(0, getHeight(canvas)):
+      setColor(getPixel(canvas,x,y), getColor(getPixel(pic,x*widthRatio,y*heightRatio))) 
+  #show(canvas)
+  return canvas
    
         
   
