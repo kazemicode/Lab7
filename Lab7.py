@@ -47,6 +47,7 @@ def drawCard(canvas):
   # Draws face on pumpkin 3
   drawFace(canvas, pic3, 628, 798, 266, 440)
   show(canvas)
+  return canvas
 
 
 def drawFace(canvas, face, x1, x2, y1, y2):
@@ -98,11 +99,11 @@ def drawFace(canvas, face, x1, x2, y1, y2):
     # And reset the y location of the face picture to 0
     if px < getWidth(face) - 1:
       px = px + 1
-    print px
+    #print px
     
     py = 0
     
-  show(canvas)
+  #show(canvas)
   return canvas
 
 def stretch(pic, widthRatio, heightRatio):
