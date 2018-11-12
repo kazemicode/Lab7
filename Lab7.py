@@ -32,7 +32,34 @@ def warmUp(pic):
     radius = radius * 2
     
   show(pic)
+  
+def desertSnowman(pic):
+  radiusBot = 200
+  radiusMid = 150
+  radiusTop = 125
+  buttons = 25
+  eyes = 12
+  #Drawing the white circles for the snowman
+  addArcFilled(pic,700,500,radiusBot,radiusBot,0,360,white)
+  addArcFilled(pic,724,400,radiusMid,radiusMid,0,360,white)
+  addArcFilled(pic,734,325,radiusTop,radiusTop,0,360,white)
+  #Drawing the black circles for buttons
+  addArcFilled(pic,785,495,buttons,buttons,0,360)
+  addArcFilled(pic,785,530,buttons,buttons,0,360)
+  addArcFilled(pic,785,460,buttons,buttons,0,360)
+  #Drawing eyes
+  addArcFilled(pic,812,360,eyes,eyes,0,360)
+  addArcFilled(pic,767,360,eyes,eyes,0,360)
+  #Draw nose (wedge of a circle)
+  addArcFilled(pic,725,357,75,75,345,30,orange)
+  #Draw hat (two rectangles)
+  addRectFilled(pic,738,325,115,10)
+  addRectFilled(pic,758,250,75,85)  
+  show(pic)
+  return pic
+  
 
+  
 #################################################################################
 ## Make a Thanksgiving Card!                                                    #
                                                                                 #
@@ -142,7 +169,7 @@ def shrink(pic, widthRatio, heightRatio):
   #show(canvas)
   return canvas
    
-        
+      
 ###############################################################################
 # addMessage: Add provided text to canvas at x, y location in c color
 ###############################################################################  
