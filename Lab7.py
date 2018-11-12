@@ -6,7 +6,7 @@ dir = ""
 
 ## main method
 def main():
-  writePict(drawCard(getPic()), dir + "/card.jpg") 
+  writePict(drawCard(getPic()), dir + "/card.png") 
  
 
 
