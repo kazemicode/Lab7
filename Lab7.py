@@ -56,7 +56,8 @@ def drawFace(canvas, face, x1, x2, y1, y2):
   faceHeight = getHeight(face)
   
 
-  widthRatio, heightRatio = 1
+  widthRatio = 1
+  heightRatio = 1
   
   # Check sizes of photos and resize if necessary
   # To do: Find out how to stretch or shrink by a non-integer amount
@@ -64,13 +65,20 @@ def drawFace(canvas, face, x1, x2, y1, y2):
   # To do: Can we generalize a function (named resize) to shrink/stretch a photo
   # Rather than creating separate shrink/stretch functions?
   if(holeWidth > faceWidth):
-    widthRatio = float(holeWidth/faceWidth)
-    print widthRatio
+    widthRatio = float(holeWidth)/faceWidth
+    face = stretch(face, widthRatio, heightRatio)
+  elif(holeWidth < faceWidth):
+    widthRatio = float(faceWidth)/holeWidth
+    face = shrink(face, widthRatio, heightRatio)
     
   if(holeHeight > faceHeight):
-    heightRaio = float(holeHeight/faceHeight)
-    print heightRatio
-  stretch(face, widthRatio, heightRatio)
+    heightRaio = float(holeHeight)/faceHeight
+    face = stretch(face, widthRatio, heightRatio)
+  elif(holeHeight < faceWidth):
+    heightRaio = float(faceHeight)/holeHeight
+    face = shrink(face, widthRatio, heightRatio)
+    #print heightRatio
+  
   
 # px and py are the x, y locations of the picture of a face
   px = 0
@@ -83,31 +91,35 @@ def drawFace(canvas, face, x1, x2, y1, y2):
       if distance(getColor(getPixel(canvas, x, y)), white) < 100:
         setColor(getPixel(canvas, x, y), getColor(getPixel(face, px, py)))
       # Proceed to next y location of face picture  
-      py = py + 1
+      if py < getHeight(face) - 1: 
+        py = py + 1
         
     # When the inner loop is exited, increase the x location of face picture
     # And reset the y location of the face picture to 0
-    px = px + 1
+    if px < getWidth(face) - 1:
+      px = px + 1
+    print px
+    
     py = 0
     
-  #show(canvas)
+  show(canvas)
   return canvas
 
 def stretch(pic, widthRatio, heightRatio):
   w, h = getWidth(pic), getHeight(pic)
-  canvas = makeEmptyPicture(w*widthRatio, h*heightRatio)  
+  canvas = makeEmptyPicture(int(w*widthRatio), int(h*heightRatio))  
   for x in range(0, getWidth(canvas)):
      for y in range(0, getHeight(canvas)):
-        setColor(getPixel(canvas,x,y), getColor(getPixel(pic,x/widthRatio,y/heightRatio))) 
+        setColor(getPixel(canvas,x,y), getColor(getPixel(pic,int(x/widthRatio),int(y/heightRatio)))) 
   #show(canvas)
   return canvas
   
 def shrink(pic, widthRatio, heightRatio):
   w, h = getWidth(pic), getHeight(pic)
-  canvas = makeEmptyPicture(w/widthRatio, h/heightRatio)  
+  canvas = makeEmptyPicture(int(w/widthRatio), int(h/heightRatio))  
   for x in range(0, getWidth(canvas)):
     for y in range(0, getHeight(canvas)):
-      setColor(getPixel(canvas,x,y), getColor(getPixel(pic,x*widthRatio,y*heightRatio))) 
+      setColor(getPixel(canvas,x,y), getColor(getPixel(pic, int(x*widthRatio), int(y*heightRatio)))) 
   #show(canvas)
   return canvas
    
