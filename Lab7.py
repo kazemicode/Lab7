@@ -18,46 +18,43 @@ def writePict(pict,name):
   file=getMediaPath(name)
   writePictureTo(pict,file)
 
+
 # Draw a snowman
-def warmUp(pic):
-  radius = 50
+def drawSnowMan(pic, radius):
+
   x = getWidth(pic) / 5
   y = getHeight(pic) / 5
   for i in range(1,4):
     
     addOvalFilled(pic, x, y, radius, radius, white)
-    
+    if i == 1:
+      # draw face and hat on top ball
+      drawHead(pic, x, y, radius, 0)
+  
+    elif i%2==0:
+      # draw buttons on middle ball
+      drawButtons(pic, x, y, radius, 0)
+ 
     y = y + radius - radius/4
     x = x - radius/2
     radius = radius * 2
     
   show(pic)
-  
-def desertSnowman(pic):
-  radiusBot = 200
-  radiusMid = 150
-  radiusTop = 125
-  buttons = 25
-  eyes = 12
-  #Drawing the white circles for the snowman
-  addArcFilled(pic,700,500,radiusBot,radiusBot,0,360,white)
-  addArcFilled(pic,724,400,radiusMid,radiusMid,0,360,white)
-  addArcFilled(pic,734,325,radiusTop,radiusTop,0,360,white)
-  #Drawing the black circles for buttons
-  addArcFilled(pic,785,495,buttons,buttons,0,360)
-  addArcFilled(pic,785,530,buttons,buttons,0,360)
-  addArcFilled(pic,785,460,buttons,buttons,0,360)
-  #Drawing eyes
-  addArcFilled(pic,812,360,eyes,eyes,0,360)
-  addArcFilled(pic,767,360,eyes,eyes,0,360)
-  #Draw nose (wedge of a circle)
-  addArcFilled(pic,725,357,75,75,345,30,orange)
-  #Draw hat (two rectangles)
-  addRectFilled(pic,738,325,115,10)
-  addRectFilled(pic,758,250,75,85)  
-  show(pic)
-  return pic
-  
+  writePict(pic,"/snow.png")
+
+def drawButtons(pic, x, y, radius, button):
+  for j in range(1,4):
+    addOvalFilled(pic, x  + radius/2, y+button+radius/5, radius/10+2, radius/10+2, black) 
+    button = button + radius / 5
+
+def drawHead(pic, x, y, radius, eye):
+  for j in range(1,3):
+    addArcFilled(pic, x+radius/4+eye, y+radius/4, radius / 10 + 2, radius / 10+ 2, 0, 360)
+    eye = eye + radius/3
+  addArcFilled(pic, x, y+radius/4, radius / 2, radius / 2 , 345, 30, orange) #nose
+  addRectFilled(pic,x,y,radius,radius/5) #brim
+  addRectFilled(pic,x+radius/4, y-radius/2,radius/2,radius/2) #top
+
 
   
 #################################################################################
