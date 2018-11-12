@@ -2,10 +2,11 @@
 # change output directory to desired path on your machine
 
 ## Output directory
-#dir = ""
+dir = ""
 
 ## main method
-#def main():
+def main():
+  writePict(drawCard(getPic()), dir + "/card.jpg") 
  
 
 
@@ -45,7 +46,7 @@ def drawCard(canvas):
   # Draws face on pumpkin 2
   drawFace(canvas, pic2, 371, 611, 352, 521)
   # Draws face on pumpkin 3
-  drawFace(canvas, pic3, 628, 798, 266, 440)
+  drawFace(canvas, pic3, 627, 800, 267, 440)
   show(canvas)
   return canvas
 
