@@ -60,25 +60,27 @@ def drawFace(canvas, face, x1, x2, y1, y2):
   widthRatio = 1
   heightRatio = 1
   
-  # Check sizes of photos and resize if necessary
-  # To do: Find out how to stretch or shrink by a non-integer amount
-  # without running into errors
-  # To do: Can we generalize a function (named resize) to shrink/stretch a photo
-  # Rather than creating separate shrink/stretch functions?
+  # Check sizes of face photos and resize if necessary
+  
+  # adjust face width
   if(holeWidth > faceWidth):
     widthRatio = float(holeWidth)/faceWidth
     face = stretch(face, widthRatio, heightRatio)
-  elif(holeWidth < faceWidth):
+  elif(faceWidth > holeWidth):
     widthRatio = float(faceWidth)/holeWidth
     face = shrink(face, widthRatio, heightRatio)
-    
+  #reset width ratio  
+  widthRatio = 1
+  
+  
+  # adjust face height      
   if(holeHeight > faceHeight):
-    heightRaio = float(holeHeight)/faceHeight
+    heightRatio = float(holeHeight)/faceHeight
     face = stretch(face, widthRatio, heightRatio)
-  elif(holeHeight < faceWidth):
-    heightRaio = float(faceHeight)/holeHeight
+  elif(faceWidth > holeHeight):
+    heightRatio = float(faceHeight)/holeHeight
     face = shrink(face, widthRatio, heightRatio)
-    #print heightRatio
+    
   
   
 # px and py are the x, y locations of the picture of a face
