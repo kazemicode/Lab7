@@ -1,14 +1,13 @@
+### Lab 7 - Sara Kazemi
+##  In collaboration with Nathan Warren-Acord   ##
+##################################################
+
 # Run the main method
 # change output directory to desired path on your machine
-
-## Output directory
-dir = ""
-
-## main method
 def main():
+  dir = ""
   writePict(drawCard(getPic()), dir + "/card.png") 
  
-
 
 # Returns the picture given a directory
 def getPic():
@@ -33,8 +32,14 @@ def warmUp(pic):
     radius = radius * 2
     
   show(pic)
-   
-# the card canvas is a scene with 3 pumpkins with cutouts for faces
+
+#################################################################################
+## Make a Thanksgiving Card!                                                    #
+                                                                                #
+
+###############################################################################
+# drawCard: the card canvas is a scene with 3 pumpkins with cutouts for faces
+###############################################################################
 def drawCard(canvas):
   # Three pics below should be of faces to draw on cutouts
   pic1 = getPic()
@@ -52,7 +57,9 @@ def drawCard(canvas):
   show(canvas)
   return canvas
 
-
+###############################################################################
+# drawFace: Copies photo of face on to card canvas within the x and y range 
+###############################################################################
 def drawFace(canvas, face, x1, x2, y1, y2):
   holeWidth = abs(x1-x2)
   holeHeight = abs(y1-y2)
@@ -111,6 +118,9 @@ def drawFace(canvas, face, x1, x2, y1, y2):
   #show(canvas)
   return canvas
 
+###############################################################################
+# stretch: Stretch picture's width and height by given factor
+###############################################################################
 def stretch(pic, widthRatio, heightRatio):
   w, h = getWidth(pic), getHeight(pic)
   canvas = makeEmptyPicture(int(w*widthRatio), int(h*heightRatio))  
@@ -119,7 +129,10 @@ def stretch(pic, widthRatio, heightRatio):
         setColor(getPixel(canvas,x,y), getColor(getPixel(pic,int(x/widthRatio),int(y/heightRatio)))) 
   #show(canvas)
   return canvas
-  
+ 
+###############################################################################
+# shrink: Shrink picture's width and height by given factor
+###############################################################################   
 def shrink(pic, widthRatio, heightRatio):
   w, h = getWidth(pic), getHeight(pic)
   canvas = makeEmptyPicture(int(w/widthRatio), int(h/heightRatio))  
@@ -130,7 +143,9 @@ def shrink(pic, widthRatio, heightRatio):
   return canvas
    
         
-  
+###############################################################################
+# addMessage: Add provided text to canvas at x, y location in c color
+###############################################################################  
 def addMessage(canvas, text, x, y, c):
   s = makeStyle(sansSerif, bold, 75)
   addTextWithStyle(canvas, x, y, text, s, c) 
